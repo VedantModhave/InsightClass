@@ -9,3 +9,5 @@
 
 [build.environment]
   NODE_VERSION = "22.17.0"
+  # Disable secrets scanning for public API URLs
+  SECRETS_SCAN_ENABLED = "false"

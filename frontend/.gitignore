@@ -2,11 +2,11 @@
 .env
 .env.local
 .env.*.local
+.env.publish
 *.env
 
 # Keep example files only
 !.env.example
-!.env.publish
 
 # Dependencies
 node_modules/
