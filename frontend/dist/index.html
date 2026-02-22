@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>React App</title>
+      <script type="module" crossorigin src="/assets/index-7JkJhfWx.js"></script>
+      <link rel="stylesheet" crossorigin href="/assets/index--B_buQh4.css">
+      <style>
+        #vite-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        #vite-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #vite-loader .loader {
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            color: gray;
+            stroke: gray;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    </head>
+    <body>
+        <div id="root"></div>
+      <script>
+        (() => {
+            const createLoader = () => {
+                let loader = document.getElementById("vite-loader");
+                if (loader) return loader;
+
+                loader = document.createElement("div");
+                loader.id = "vite-loader";
+                
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("class", "loader medium");
+                svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                svg.setAttribute("viewBox", "0 0 24 24");
+                svg.setAttribute("fill", "none");
+                svg.setAttribute("stroke", "currentColor");
+                svg.setAttribute("stroke-width", "2");
+                svg.setAttribute("stroke-linecap", "round");
+                svg.setAttribute("stroke-linejoin", "round");
+                
+                const paths = [
+                    { d: "M12 2v4" },
+                    { d: "m16.2 7.8 2.9-2.9" },
+                    { d: "M18 12h4" },
+                    { d: "m16.2 16.2 2.9 2.9" },
+                    { d: "M12 18v4" },
+                    { d: "m4.9 19.1 2.9-2.9" },
+                    { d: "M2 12h4" },
+                    { d: "m4.9 4.9 2.9 2.9" }
+                ];
+                
+                paths.forEach(pathData => {
+                    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    path.setAttribute("d", pathData.d);
+                    svg.appendChild(path);
+                });
+                
+                loader.appendChild(svg);
+                document.body.appendChild(loader);
+                
+                return loader;
+            }
+
+            const removeLoader = () => {
+                const loader = document.getElementById("vite-loader");
+                if (loader) {
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        if (loader.parentNode) {
+                            loader.parentNode.removeChild(loader);
+                        }
+                    }, 100);
+                }
+            }
+
+            // Create loader immediately
+            if (document.body) {
+                createLoader();
+            } else {
+                document.addEventListener('DOMContentLoaded', createLoader);
+            }
+
+            // Remove loader when page is fully loaded
+            if (document.readyState === 'complete') {
+                removeLoader();
+            } else {
+                window.addEventListener('load', removeLoader);
+            }
+        })()
+    </script>
+      <script>
+    (function() {
+      function createWatermark() {
+        let wm = document.getElementById("built_with_uptiq__attribution");
+        if (wm) return wm;
+
+        wm = document.createElement("a");
+        wm.href = "https://build.withmattr.ai";
+        wm.target = "_blank";
+        wm.rel = "noopener";
+        wm.id = "built_with_uptiq__attribution";
+        wm.style.position = "fixed";
+        wm.style.textDecoration = "none";
+        wm.style.overflow = "hidden";
+        wm.style.right = "20px";
+        wm.style.bottom = "20px";
+        wm.style.zIndex = "999999";
+        wm.style.height = "36px";
+        wm.style.maxHeight = "36px";
+        wm.style.backgroundColor = "#fff";
+        wm.style.borderRadius = "999px";
+        wm.style.userSelect = "none";
+        wm.style.display = "flex";
+        wm.style.alignItems = "center";
+        wm.style.justifyContent = "center";
+        wm.style.gap = "5px";
+        wm.style.fontFamily = "'Mulish', system-ui, sans-serif";
+        wm.style.fontSize = "14px";
+        wm.style.lineHeight = "20px";
+        wm.style.color = "#374151";
+        wm.style.paddingBlock = "8px";
+        wm.style.paddingInline = "12px";
+        wm.style.boxShadow = "0 0 25px -5px rgba(0, 0, 0, 0.10), 0 0 10px -5px rgba(0, 0, 0, 0.04)";
+
+        var img = document.createElement("img");
+        img.src = "https://qore-assets.uptiq.dev/theme/160be634-e6f7-487c-a32d-9e7582a46adc/square-360255e0-0fa6-45a8-94d1-1a9ba7a341ae.svg";
+        img.style.width = "16px";
+        img.style.height = "16px";
+        img.style.objectFit = "contain";
+
+        var txt = document.createElement("p");
+        txt.style.margin="0";
+        txt.style.padding="0";
+        txt.innerText = "Built with Mattr";
+
+        wm.appendChild(img);
+        wm.appendChild(txt);
+
+        document.body.appendChild(wm);
+      }
+
+      // Create watermark initially
+      createWatermark();
+
+      // Observe DOM and re-create if removed
+      const observer = new MutationObserver(() => {
+        if (!document.getElementById("built_with_uptiq__attribution")) {
+          createWatermark();
+        }
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+  </script>
+    </body>
+</html>
