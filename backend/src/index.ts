@@ -10,15 +10,25 @@ dotenv.config();
 console.log('Starting');
 async function main() {
     try {
-        await prisma.$connect();
+        console.log('Connecting to database...');
+        await Promise.race([
+            prisma.$connect(),
+            new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Database connection timeout')), 10000)
+            )
+        ]);
+        console.log('Database connected successfully');
     } catch (error) {
-        process.exit(1);
+        console.error('Database connection failed:', error);
+        console.log('Starting server without database connection...');
     }
 
     server = serve({
         fetch: app.fetch,
         port: (process.env.PORT || 3000) as number
     });
+    
+    console.log(`Server running on port ${process.env.PORT || 3000}`);
 
     const exitHandler = () => {
         if (server) {
