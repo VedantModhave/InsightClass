@@ -145,7 +145,7 @@ const App: React.FC = () => {
 
       <main className="flex-1 overflow-y-auto relative bg-background flex flex-col">
         {/* Mobile Header */}
-        <header className="lg:hidden flex items-center justify-between pt-28 pb-4 px-4 border-b border-border sticky top-0 bg-background/80 backdrop-blur-md z-10">
+        <header className="lg:hidden flex items-center justify-between py-4 px-4 border-b border-border sticky top-0 bg-background/80 backdrop-blur-md z-10">
           <div className="flex items-center gap-3">
             <div className="bg-primary p-1.5 rounded-lg text-primary-foreground">
               <GraduationCap size={20} />
@@ -162,6 +162,8 @@ const App: React.FC = () => {
           </button>
         </header>
 
+        {/* Content wrapper with top spacing on mobile */}
+        <div className="pt-6 lg:pt-0 flex-1">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <motion.div 
@@ -213,7 +215,7 @@ const App: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="flex flex-col items-center justify-center min-h-full max-w-4xl mx-auto px-10 text-center pt-32 pb-20"
+              className="flex flex-col items-center justify-center min-h-full max-w-4xl mx-auto px-10 text-center py-20"
             >
               <div className="w-24 h-24 bg-sidebar text-sidebar-foreground rounded-[2.5rem] flex items-center justify-center mb-10 shadow-2xl shadow-sidebar-border/20 border border-border">
                 <GraduationCap size={48} />
@@ -329,6 +331,7 @@ const App: React.FC = () => {
             </div>
           )}
         </AnimatePresence>
+        </div>
       </main>
     </div>
   );
