@@ -47,6 +47,32 @@ aiRoutes.post('/chat', catchAsync(async (c) => {
   
   let enhancedContent = messageContent;
   
+  // Check for high-risk/attention queries
+  const isHighRiskQuery = messageContent.toLowerCase().includes('need attention') || 
+                          messageContent.toLowerCase().includes('immediate attention') ||
+                          messageContent.toLowerCase().includes('high risk') ||
+                          messageContent.toLowerCase().includes('at risk');
+  
+  if (isHighRiskQuery) {
+    // Pre-filter to only high-risk and needs-attention students for faster response
+    const urgentStudents = students
+      .filter(s => s.riskLevel === 'High Risk' || s.riskLevel === 'Needs Attention')
+      .sort((a, b) => {
+        // Sort by risk level (High Risk first) then by academic score
+        if (a.riskLevel === 'High Risk' && b.riskLevel !== 'High Risk') return -1;
+        if (a.riskLevel !== 'High Risk' && b.riskLevel === 'High Risk') return 1;
+        return (a.academicScore || 0) - (b.academicScore || 0);
+      })
+      .slice(0, 10); // Top 10 most urgent
+    
+    enhancedContent = `${messageContent}
+
+TOP 10 STUDENTS NEEDING IMMEDIATE ATTENTION:
+${urgentStudents.map(s => `• #${s.rollNumber}: ${s.riskLevel} - ${s.riskReasons?.[0] || 'Multiple concerns'}`).join('\n')}
+
+Provide a concise summary focusing on the most urgent cases.`;
+  }
+  
   if (studentMatch) {
     const rawMatch = studentMatch[0].replace('#', '').replace('-', '').toUpperCase();
     const rollNumber = rawMatch.startsWith('R') ? rawMatch : `R${rawMatch}`;
