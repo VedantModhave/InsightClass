@@ -1,13 +1,13 @@
 # Environment variables - CRITICAL: Never commit these!
 .env
 .env.local
+.env.development
+.env.production
+.env.test
 .env.*.local
-.env.private
-*.env
 
-# Keep example files only
+# Keep only the example file
 !.env.example
-!.env.public
 
 # Dependencies
 node_modules/

@@ -44,16 +44,20 @@ git push -u origin main
    - **Node version**: Will be automatically detected from `.nvmrc` (22.17.0)
 
 4. **Add Environment Variables**
-   Click "Show advanced" → "New variable" and add these:
+   Click "Show advanced" → "New variable" and add these (get values from your backend .env file):
    
    ```
-   VITE_API_BASE_URL=https://edu-insight-pro-641633-backend.withmattr.app
+   VITE_API_BASE_URL=https://your-backend-url.com
    VITE_USE_MOCK_DATA=false
-   VITE_AGENT_BASE_URL=https://api-mattr.uptiq.dev
-   VITE_DEPLOYMENT_ID=93cf8951-e73a-49e9-8609-137e23008fff
-   VITE_BUILDER_PLATFORM_LOGO=https://qore-assets.uptiq.dev/theme/160be634-e6f7-487c-a32d-9e7582a46adc/square-360255e0-0fa6-45a8-94d1-1a9ba7a341ae.svg
-   VITE_BUILDER_PLATFORM_NAME=Mattr
-   VITE_BUILDER_PLATFORM_URL=https://build.withmattr.ai
+   VITE_AGENT_BASE_URL=https://your-agent-url.com
+   ```
+   
+   Optional variables (if you have them configured):
+   ```
+   VITE_DEPLOYMENT_ID=your-deployment-id
+   VITE_BUILDER_PLATFORM_LOGO=your-logo-url
+   VITE_BUILDER_PLATFORM_NAME=your-platform-name
+   VITE_BUILDER_PLATFORM_URL=your-platform-url
    ```
 
 5. **Deploy**

@@ -22,10 +22,7 @@ RUN pnpm install
 
 RUN pnpm i serve@14.2.5
 
-# Copy source files needed for build
-COPY .env.publish .env
-
-# Build the project
+# Build the project (environment variables should be passed at build time)
 RUN pnpm build
 
 # Remove dev dependencies to reduce image size
